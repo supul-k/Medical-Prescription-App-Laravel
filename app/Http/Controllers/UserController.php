@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use Session;
 use App\Models\User;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use PhpParser\Node\Stmt\Return_;
 
 class UserController extends Controller
 {
@@ -44,7 +42,35 @@ class UserController extends Controller
         return redirect('login')->with('success','Registration Completed, now you can login');
     }
 
+    function validate_login(Request $request){
+        $request -> validate([
+            'email'     => 'required',
+            'password'  => 'required'
+        ]);
+
+        $credentials = $request->only('email','password');
+
+        if(Auth::attempt($credentials)){
+            return redirect('dashboard');
+        }
+
+        return redirect('login')->with('success','Login details are not valid');
+    }
+
+    function dashboard(){
+        if(Auth::check()){
+            return view('dashboard');
+        }
+
+        return redirect('login')->with('success','You are not allowed to access');
+    }
+
     function logout(){
-       
+
+       Session()->flush();
+
+       Auth::logout();
+
+       return redirect('login');
     }
 }
