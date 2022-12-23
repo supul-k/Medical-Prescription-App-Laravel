@@ -26,5 +26,7 @@ Route::controller(UserController::class)->group(function(){
     Route::get('registration','registration')->name('registration');
 
     Route::get('logout','logout')->name('logout');
+
+    Route::post('validate_registration', 'validate_registration')->name('user.validate_registration');
 });
 

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>Medical Prescription</title>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -25,17 +25,12 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-light bg-light justify-content-between">
-        <a class="navbar-brand">Navbar</a>
-        <div class="navbar navs" style="color: aquamarine">
+    <nav class="navbar navbar-light bg-light justify-content-between" style="color: rgb(49, 173, 4)">
+        <a class="navbar-brand">MEDICAL PRESCRIPTION</a>
+        <div class="navbar navs">
             @guest
-
-                <button type="button" class="btn btn-outline-primary mr-3">
-                    <a href="{{ route('login') }}">Login</a>
-                </button>
-                <button type="button" class="btn btn-outline-primary">
-                    <a href="{{ route('registration') }}">Sign Up</a>
-                </button>
+                <a class="btn btn-outline-primary mr-3" href="{{ route('login') }}">Login</a>
+                <a class="btn btn-outline-primary mr-3" href="{{ route('registration') }}">Sign Up</a>
             @else
                 <button type="button" class="btn btn-outline-primary">
                     <a href="{{ route(logout) }}">Logout</a>

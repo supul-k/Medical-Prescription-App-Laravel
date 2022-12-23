@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('address');
-            $table->date('DOB');
+            $table->date('DOB')->nullable();
             $table->string('contact_no');
             $table->integer('type');
             $table->timestamp('email_verified_at')->nullable();
