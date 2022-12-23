@@ -55,7 +55,18 @@
                                         <label class="form-label" for="form3Example4cg">Date of Birth</label>
                                         <i class="fas fa-calendar input-prefix"></i>
                                         @if ($errors->has('DOB'))
-                                            <span class="text-danger">{{ $errors->first('dob') }}</span>
+                                            <span class="text-danger">{{ $errors->first('DOB') }}</span>
+                                        @endif
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <select class="form-control form-control-lg" aria-label=".form-select-lg example" name="type">                                            <option selected>Open this select menu</option>
+                                            <option value=1>Customer</option>
+                                            <option value=2>Pharmacist</option>
+                                        </select>
+                                        <label class="form-label" for="form3Example4cg">Select Role</label>
+                                        @if ($errors->has('type'))
+                                            <span class="text-danger">{{ $errors->first('type') }}</span>
                                         @endif
                                     </div>
 
@@ -67,15 +78,6 @@
                                             <span class="text-danger">{{ $errors->first('password') }}</span>
                                         @endif
                                     </div>
-
-                                    {{-- <div class="form-outline mb-4">
-                                        <input type="password" id="form3Example4cdg"
-                                            class="form-control form-control-lg" name="password"/>
-                                        <label class="form-label" for="form3Example4cdg">Repeat your password</label>
-                                        @if ($erros->has('password'))
-                                            <span class="text-danger">{{ $errors->first('password') }}</span>
-                                        @endif
-                                    </div> --}}
 
                                     <div class="d-flex justify-content-center">
                                         <button type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>

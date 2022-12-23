@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Contracts\Session\Session;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -24,7 +25,8 @@ class UserController extends Controller
             'email'     => 'required|email|unique:users',
             'DOB'       => 'required',
             'address'   => 'required',
-            'contact_no'       => 'required|max:10',
+            'contact_no'=> 'required|max:10',
+            'type'     => 'required',
             'password'  => 'required|min:4'
         ]);
 
@@ -36,8 +38,9 @@ class UserController extends Controller
             'DOB'       => $data['DOB'],
             'address'   => $data['address'],
             'contact_no'=> $data['contact_no'],
+            'type'     => $data['type'],
             'password'  => Hash::make($data['password'])
-        ]);
+        ]);     
 
         return redirect('login')->with('success','Registration Completed, now you can login');
     }
@@ -50,16 +53,47 @@ class UserController extends Controller
 
         $credentials = $request->only('email','password');
 
-        if(Auth::attempt($credentials)){
-            return redirect('dashboard');
+        $email = $request->only('email');
+        $type = DB::table("users")
+            ->select("type")
+            ->where("email", "=", $email)
+            ->get();
+
+        $type = collect($type)->map(function($x){ return (array) $x; })->toArray(); 
+
+        foreach ($type as $ty) {
+            
+            if($ty['type'] == '1'){
+
+                if(Auth::attempt($credentials)){
+                    return redirect('dashboard');
+                }
+
+            }elseif($ty['type'] == '2'){
+
+                if(Auth::attempt($credentials)){
+                    return redirect('adminboard');
+                }
+
+            }
+
+            return redirect('login')->with('success','Login details are not valid');
         }
 
-        return redirect('login')->with('success','Login details are not valid');
+        
     }
 
     function dashboard(){
         if(Auth::check()){
             return view('dashboard');
+        }
+
+        return redirect('login')->with('success','You are not allowed to access');
+    }
+
+    function adminboard(){
+        if(Auth::check()){
+            return view('adminboard');
         }
 
         return redirect('login')->with('success','You are not allowed to access');
