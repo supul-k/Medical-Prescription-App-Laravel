@@ -14,4 +14,12 @@ class UserController extends Controller
     function index(){
         return view('login');
     }
+
+    function registration(){
+       
+    }
+
+    function logout(){
+       
+    }
 }
