@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PrescriptionController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UserController;
@@ -34,5 +35,17 @@ Route::controller(UserController::class)->group(function(){
     Route::get('dashboard','dashboard')->name('dashboard');
 
     Route::get('adminboard','adminboard')->name('adminboard');
+});
+
+Route::controller(PrescriptionController::class)->group(function(){
+
+    Route::get('upload','upload')->name('upload');
+
+    Route::get('showprescription','showprescription')->name('showprescription');
+
+    Route::post('validate_upload','validate_upload')->name('prescription.validate_upload');
+
+    Route::get('validate_show', 'validate_show')->name('prescription.validation_show');
+    
 });
 

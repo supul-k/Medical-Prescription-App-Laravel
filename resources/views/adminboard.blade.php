@@ -2,8 +2,7 @@
 
 @section('content')
 
-<div>
-    <p>you are log in to the admin dashboard</p>
-</div>
+    <p>welcome to the admin page</p>
+    <a href="{{ route('prescription.validation_show') }}" class="btn btn-primary btn-lg" role="button" aria-pressed="true">View Prescriptions</a>
 
 @endsection
