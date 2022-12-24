@@ -32,9 +32,7 @@
                 <a class="btn btn-outline-primary mr-3" href="{{ route('login') }}">Login</a>
                 <a class="btn btn-outline-primary mr-3" href="{{ route('registration') }}">Sign Up</a>
             @else
-                <button type="button" class="btn btn-outline-primary">
-                    <a href="{{ route('logout') }}">Logout</a>
-                </button>
+                <a class="btn btn-outline-primary mr-3" href="{{ route('logout') }}">Logout</a>
             @endguest
         </div>
     </nav>

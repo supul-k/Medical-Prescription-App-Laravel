@@ -30,7 +30,7 @@
                                     <td>{{ $item->address }}</td>
                                     <td>{{ $item->time }}</td>
                                     <td>
-                                        <img src="{{url("storage/app/public/images/".$item->photo)}}" width= '50' height='50' class="img img-responsive" />
+                                        <img src="{{ asset('storage/images/'.$item->photo)}}" width= '50' height='50' class="img img-responsive" />
                                     </td>
                                 </tr>
                             @endforeach
